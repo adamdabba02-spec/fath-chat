@@ -15,15 +15,12 @@ def chat():
     user_message = request.form.get("message")
 
     try:
-        response = client.chat.completions.create(
+        response = client.responses.create(
             model="gpt-4o-mini",
-            messages=[
-                {"role": "user", "content": user_message}
-            ]
+            input=user_message
         )
 
-        reply = response.choices[0].message.content
-
+        reply = response.output[0].content[0].text
         return jsonify({"reply": reply})
 
     except Exception as e:
