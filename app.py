@@ -4,15 +4,12 @@ import os
 
 app = Flask(__name__)
 
-# API KEY
 client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
 
-# HOME
 @app.route("/")
 def home():
     return render_template("index.html")
 
-# CHAT API
 @app.route("/chat", methods=["POST"])
 def chat():
     user_message = request.form.get("message")
@@ -22,13 +19,11 @@ def chat():
             model="gpt-4.1-mini",
             input=user_message
         )
-
         reply = response.output_text
         return jsonify({"reply": reply})
 
     except Exception as e:
         return jsonify({"reply": "xato: " + str(e)})
 
-# RUN
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=10000)
