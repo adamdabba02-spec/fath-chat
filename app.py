@@ -1,7 +1,11 @@
 from flask import Flask, render_template, request
+from openai import OpenAI
 import os
 
-app = Flask(__name__)
+app = Flask(name)
+
+# OpenAI client
+client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
 
 @app.route("/")
 def home():
@@ -10,7 +14,21 @@ def home():
 @app.route("/chat", methods=["POST"])
 def chat():
     user_message = request.form.get("message")
-    return f"Sen yozding: {user_message}"
 
-if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000)
+    try:
+        response = client.chat.completions.create(
+            model="gpt-4o-mini",
+            messages=[
+                {"role": "user", "content": user_message}
+            ]
+        )
+
+        reply = response.choices[0].message.content
+        return reply
+
+    except Exception as e:
+        return f"Xato: {str(e)}"
+if __name__=="__main__":
+    app.run(debug=True)
+if name == "main":
+    app.run(debug=True)
