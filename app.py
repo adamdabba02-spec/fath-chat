@@ -1,41 +1,33 @@
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, request, jsonify
 import os
-import requests
+from openai import OpenAI
 
 app = Flask(__name__)
 
-API_KEY = os.environ.get("OPENAI_API_KEY")
+# API KEY
+client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 @app.route("/")
 def home():
-    return render_template("index.html")
+    return "Server ishlayapti"
 
 @app.route("/chat", methods=["POST"])
 def chat():
-    user_message = request.form.get("message")
+    data = request.json
+    msg = data.get("message")
 
     try:
-        url = "https://api.openai.com/v1/chat/completions"
-
-        headers = {
-            "Authorization": f"Bearer {API_KEY}",
-            "Content-Type": "application/json"
-        }
-
-        data = {
-            "model": "gpt-4o-mini",
-            "messages": [
-                {"role": "user", "content": user_message}
+        res = client.chat.completions.create(
+            model="gpt-4o-mini",
+            messages=[
+                {"role": "system", "content": "Sen aniq va qisqa javob berasan"},
+                {"role": "user", "content": msg}
             ]
-        }
-
-        res = requests.post(url, headers=headers, json=data)
-        reply = res.json()["choices"][0]["message"]["content"]
-
-        return jsonify({"reply": reply})
+        )
+        return jsonify({"reply": res.choices[0].message.content})
 
     except Exception as e:
-        return jsonify({"reply": "xato: " + str(e)})
+        return jsonify({"error": str(e)})
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=10000)
+    app.run()
