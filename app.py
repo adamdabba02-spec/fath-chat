@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, jsonify
 from openai import OpenAI
 import os
 
@@ -23,10 +23,11 @@ def chat():
         )
 
         reply = response.choices[0].message.content
-        return reply  # TEXT qaytaryapmiz
+
+        return jsonify({"reply": reply})
 
     except Exception as e:
-        return "Xato: " + str(e)
+        return jsonify({"reply": "Xato: " + str(e)})
 
-if __name__== "__main__":
+if __name__ == "__main__":
     app.run(debug=True)
