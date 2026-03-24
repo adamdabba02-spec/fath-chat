@@ -2,14 +2,13 @@ from flask import Flask, render_template, request
 from openai import OpenAI
 import os
 
-app = Flask(name)
+app = Flask(__name__)
 
-# OpenAI client
 client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
 
 @app.route("/")
 def home():
-    return render_template("index.html")
+    return render_template("chat.html")
 
 @app.route("/chat", methods=["POST"])
 def chat():
@@ -24,13 +23,14 @@ def chat():
         )
 
         reply = response.choices[0].message.content
-        return reply
+        return reply  # TEXT qaytaryapmiz
 
     except Exception as e:
         return "Xato: " + str(e)
 
-if __name__ == "__main__":
+if __name__== "__main__":
     app.run(debug=True)
+
 
 if name == "main":
     app.run(debug=True)
