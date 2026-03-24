@@ -1,40 +1,43 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 import os
 from openai import OpenAI
 
 app = Flask(__name__)
 
-# API KEY
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 @app.route("/")
 def home():
-    return "FATH Chat ishlayapti"
+    return render_template("chat.html")
 
 @app.route("/chat", methods=["POST"])
 def chat():
-    data = request.json
-    msg = data.get("message")
-
     try:
+        data = request.get_json()
+
+        if not data:
+            return jsonify({"reply": "xato: json kelmadi"}), 400
+
+        msg = data.get("message", "").strip()
+
+        if not msg:
+            return jsonify({"reply": "xato: message bo‘sh"}), 400
+
         res = client.chat.completions.create(
             model="gpt-4o-mini",
             messages=[
-                {"role": "system", "content": "Qisqa va aniq javob ber"},
+                {"role": "system", "content": "Qisqa va aniq javob ber."},
                 {"role": "user", "content": msg}
             ]
         )
 
-        # XATOGA QARSHI HIMOYA
-        if res.choices and len(res.choices) > 0:
-            reply = res.choices[0].message.content
-        else:
-            reply = "javob yo‘q"
+        reply = res.choices[0].message.content if res.choices else "javob yo‘q"
 
         return jsonify({"reply": reply})
 
     except Exception as e:
-        return jsonify({"error": str(e)})
+        return jsonify({"reply": f"xato: {str(e)}"}), 500
+
 
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True)
