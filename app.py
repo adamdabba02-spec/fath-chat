@@ -30,7 +30,3 @@ def chat():
 
 if __name__== "__main__":
     app.run(debug=True)
-
-
-if name == "main":
-    app.run(debug=True)
