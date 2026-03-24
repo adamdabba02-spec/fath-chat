@@ -8,7 +8,7 @@ client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
 
 @app.route("/")
 def home():
-    return render_template("chat.html")
+    return render_template("index.html")
 
 @app.route("/chat", methods=["POST"])
 def chat():
