@@ -1,83 +1,84 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>FATH Chat</title>
+    <meta charset="UTF-8">
+    <title>FATH Chat</title>
 
-<style>
-body {
-    margin: 0;
-    font-family: sans-serif;
-    background: #0f172a;
-    color: white;
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-}
+    <style>
+        body {
+            margin: 0;
+            font-family: sans-serif;
+            background: #0f172a;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
 
-#chat {
-    flex: 1;
-    padding: 20px;
-    overflow-y: auto;
-}
+        #chat {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+        }
 
-.msg {
-    margin: 10px 0;
-    padding: 10px;
-    border-radius: 10px;
-    max-width: 70%;
-}
+        .msg {
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 10px;
+            max-width: 60%;
+        }
 
-.user {
-    background: #2563eb;
-    align-self: flex-end;
-}
+        .user {
+            background: #2563eb;
+            margin-left: auto;
+        }
 
-.bot {
-    background: #334155;
-    align-self: flex-start;
-}
+        .bot {
+            background: #374151;
+        }
 
-#inputBox {
-    display: flex;
-    padding: 10px;
-    background: #1e293b;
-}
+        #inputArea {
+            display: flex;
+            padding: 10px;
+            background: #1e293b;
+        }
 
-input {
-    flex: 1;
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-}
+        input {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            border-radius: 8px;
+            outline: none;
+        }
 
-button {
-    margin-left: 10px;
-    padding: 10px 20px;
-    background: #2563eb;
-    border: none;
-    color: white;
-    border-radius: 5px;
-}
-</style>
-
+        button {
+            margin-left: 10px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            background: #22c55e;
+            color: white;
+            cursor: pointer;
+        }
+    </style>
 </head>
 
 <body>
 
 <div id="chat"></div>
 
-<div id="inputBox">
-    <input id="msg" placeholder="Savolingni yoz..." />
-    <button onclick="send()">Yubor</button>
+<div id="inputArea">
+    <input id="msg" placeholder="Savolingni yoz...">
+    <button onclick="sendMsg()">Yubor</button>
 </div>
 
 <script>
-function send() {
+function sendMsg() {
     let message = document.getElementById("msg").value;
     let chat = document.getElementById("chat");
 
-    // user msg
+    if (!message) return;
+
     chat.innerHTML += <div class="msg user">${message}</div>;
 
     fetch("/chat", {
@@ -87,9 +88,9 @@ function send() {
         },
         body: "message=" + encodeURIComponent(message)
     })
-    .then(res => res.json())
+    .then(res => res.text())  // 🔥 MUHIM
     .then(data => {
-        chat.innerHTML += <div class="msg bot">${data.reply}</div>;
+        chat.innerHTML += <div class="msg bot">${data}</div>;
         document.getElementById("msg").value = "";
         chat.scrollTop = chat.scrollHeight;
     })
