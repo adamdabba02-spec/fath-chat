@@ -27,8 +27,10 @@ def chat():
         return reply
 
     except Exception as e:
-        return f"Xato: {str(e)}"
-if __name__=="__main__":
+        return "Xato: " + str(e)
+
+if __name__ == "__main__":
     app.run(debug=True)
+
 if name == "main":
     app.run(debug=True)
