@@ -1,73 +1,71 @@
 <!DOCTYPE html>
 <html lang="uz">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FATH Chat</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FATH Chat</title>
 
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial;
-            background: #0f172a;
-            color: white;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
+<style>
+body {
+    margin: 0;
+    font-family: Arial;
+    background: #0f172a;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
 
-        .chat-box {
-            width: 400px;
-            background: #111827;
-            border-radius: 15px;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-        }
+.chat-box {
+    width: 400px;
+    background: #111827;
+    border-radius: 15px;
+    padding: 20px;
+}
 
-        #chat {
-            height: 300px;
-            overflow-y: auto;
-            margin-bottom: 10px;
-        }
+#chat {
+    height: 300px;
+    overflow-y: auto;
+    margin-bottom: 10px;
+}
 
-        .msg {
-            padding: 8px;
-            margin: 5px 0;
-            border-radius: 8px;
-        }
+.msg {
+    padding: 8px;
+    margin: 5px 0;
+    border-radius: 8px;
+}
 
-        .user {
-            background: #2563eb;
-            text-align: right;
-        }
+.user {
+    background: #2563eb;
+    text-align: right;
+}
 
-        .bot {
-            background: #374151;
-        }
+.bot {
+    background: #374151;
+}
 
-        .row {
-            display: flex;
-            gap: 10px;
-        }
+.row {
+    display: flex;
+    gap: 10px;
+}
 
-        input {
-            flex: 1;
-            padding: 10px;
-            border-radius: 8px;
-            border: none;
-        }
+input {
+    flex: 1;
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+}
 
-        button {
-            padding: 10px;
-            border-radius: 8px;
-            border: none;
-            background: #3b82f6;
-            color: white;
-            cursor: pointer;
-        }
-    </style>
+button {
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    background: #3b82f6;
+    color: white;
+    cursor: pointer;
+}
+</style>
 </head>
 
 <body>
@@ -78,12 +76,18 @@
     <div id="chat"></div>
 
     <div class="row">
-        <input id="msg" placeholder="Yozing..." />
+        <input id="msg" placeholder="Yozing..." onkeypress="handleKey(event)">
         <button onclick="sendMessage()">Yubor</button>
     </div>
 </div>
 
 <script>
+function handleKey(e) {
+    if (e.key === "Enter") {
+        sendMessage();
+    }
+}
+
 async function sendMessage() {
     let input = document.getElementById("msg");
     let chat = document.getElementById("chat");
@@ -114,13 +118,6 @@ async function sendMessage() {
         chat.innerHTML += <div class="msg bot">xato: ${err}</div>;
     }
 }
-
-// ✅ ENTER ishlaydi
-document.getElementById("msg").addEventListener("keypress", function(e) {
-    if (e.key === "Enter") {
-        sendMessage();
-    }
-});
 </script>
 
 </body>
