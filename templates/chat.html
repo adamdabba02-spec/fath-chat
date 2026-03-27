@@ -75,38 +75,36 @@ button {
 
 <script>
 async function sendMessage() {
-    let input = document.getElementById("msg");
-    let chat = document.getElementById("chat");
+    const input = document.getElementById("msg");
+    const chat = document.getElementById("chat");
 
-    let msg = input.value;
+    const msg = input.value.trim();
     if (!msg) return;
 
-    chat.innerHTML += <div class="msg user">${msg}</div>;
+    chat.innerHTML += '<div class="msg user">' + msg + '</div>';
     input.value = "";
 
     try {
-        let res = await fetch("https://fath-chat.onrender.com/chat", {
+        const res = await fetch("/chat", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({
-                message: msg
-            })
+            body: JSON.stringify({ message: msg })
         });
 
-        let data = await res.json();
+        const data = await res.json();
 
-        chat.innerHTML += <div class="msg bot">${data.reply}</div>;
+        chat.innerHTML += '<div class="msg bot">' + data.reply + '</div>';
         chat.scrollTop = chat.scrollHeight;
 
     } catch (err) {
-        chat.innerHTML += <div class="msg bot">xato: ${err}</div>;
+        chat.innerHTML += '<div class="msg bot">xato: ' + err + '</div>';
     }
 }
 
 // ENTER ishlasin
-document.getElementById("msg").addEventListener("keypress", function(e) {
+document.getElementById("msg").addEventListener("keydown", function(e) {
     if (e.key === "Enter") {
         sendMessage();
     }
