@@ -8,7 +8,7 @@
     <style>
         body {
             margin: 0;
-            font-family: Arial, sans-serif;
+            font-family: Arial;
             background: #0f172a;
             color: white;
             display: flex;
@@ -47,25 +47,25 @@
             background: #374151;
         }
 
+        .row {
+            display: flex;
+            gap: 10px;
+        }
+
         input {
+            flex: 1;
             padding: 10px;
-            border: none;
             border-radius: 8px;
-            width: 75%;
+            border: none;
         }
 
         button {
             padding: 10px;
-            border: none;
             border-radius: 8px;
+            border: none;
             background: #3b82f6;
             color: white;
             cursor: pointer;
-        }
-
-        .row {
-            display: flex;
-            gap: 10px;
         }
     </style>
 </head>
@@ -89,11 +89,10 @@ async function sendMessage() {
     let chat = document.getElementById("chat");
 
     let msg = input.value;
-
     if (!msg) return;
 
+    // user message
     chat.innerHTML += <div class="msg user">${msg}</div>;
-
     input.value = "";
 
     try {
@@ -102,13 +101,12 @@ async function sendMessage() {
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({
-                message: msg
-            })
+            body: JSON.stringify({ message: msg })
         });
 
         let data = await res.json();
 
+        // bot reply
         chat.innerHTML += <div class="msg bot">${data.reply}</div>;
         chat.scrollTop = chat.scrollHeight;
 
@@ -116,6 +114,13 @@ async function sendMessage() {
         chat.innerHTML += <div class="msg bot">xato: ${err}</div>;
     }
 }
+
+// ✅ ENTER ishlaydi
+document.getElementById("msg").addEventListener("keypress", function(e) {
+    if (e.key === "Enter") {
+        sendMessage();
+    }
+});
 </script>
 
 </body>
