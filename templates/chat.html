@@ -1,49 +1,120 @@
 <!DOCTYPE html>
 <html lang="uz">
 <head>
-<meta charset="UTF-8">
-<title>FATH Chat</title>
-<style>
-body {
-  background:#0f172a;
-  color:white;
-  font-family:Arial;
-}
-.chat-box {
-  max-width:600px;
-  margin:auto;
-  margin-top:50px;
-}
-input {
-  width:80%;
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FATH Chat</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #0f172a;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .chat-box {
+            width: 400px;
+            background: #111827;
+            border-radius: 15px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        #chat {
+            height: 300px;
+            overflow-y: auto;
+            margin-bottom: 10px;
+        }
+
+        .msg {
+            padding: 8px;
+            margin: 5px 0;
+            border-radius: 8px;
+        }
+
+        .user {
+            background: #2563eb;
+            text-align: right;
+        }
+
+        .bot {
+            background: #374151;
+        }
+
+        input {
+            padding: 10px;
+            border: none;
+            border-radius: 8px;
+            width: 75%;
+        }
+
+        button {
+            padding: 10px;
+            border: none;
+            border-radius: 8px;
+            background: #3b82f6;
+            color: white;
+            cursor: pointer;
+        }
+
+        .row {
+            display: flex;
+            gap: 10px;
+        }
+    </style>
 </head>
 
 <body>
+
 <div class="chat-box">
-  <h2>⚡️ FATH Chat</h2>
+    <h2>⚡️ FATH Chat</h2>
 
-  <div id="chat"></div>
+    <div id="chat"></div>
 
-  <input id="msg" placeholder="yoz...">
-  <button onclick="sendMessage()">Yubor</button>
+    <div class="row">
+        <input id="msg" placeholder="Yozing..." />
+        <button onclick="sendMessage()">Yubor</button>
+    </div>
 </div>
 
 <script>
 async function sendMessage() {
-  let msg = document.getElementById("msg").value;
+    let input = document.getElementById("msg");
+    let chat = document.getElementById("chat");
 
-  let res = await fetch("/chat", {
-    method: "POST",
-    headers: {"Content-Type":"application/json"},
-    body: JSON.stringify({msg:msg})
-  });
+    let msg = input.value;
 
-  let data = await res.json();
+    if (!msg) return;
 
-  document.getElementById("chat").innerHTML +=
-    "<div>"+data.reply+"</div>";
+    chat.innerHTML += <div class="msg user">${msg}</div>;
+
+    input.value = "";
+
+    try {
+        let res = await fetch("/chat", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                message: msg
+            })
+        });
+
+        let data = await res.json();
+
+        chat.innerHTML += <div class="msg bot">${data.reply}</div>;
+        chat.scrollTop = chat.scrollHeight;
+
+    } catch (err) {
+        chat.innerHTML += <div class="msg bot">xato: ${err}</div>;
+    }
 }
 </script>
 
