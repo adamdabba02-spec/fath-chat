@@ -16,51 +16,43 @@ body {
     align-items: center;
     height: 100vh;
 }
-
 .chat-box {
     width: 400px;
     background: #111827;
     border-radius: 15px;
     padding: 20px;
 }
-
 #chat {
     height: 300px;
     overflow-y: auto;
     margin-bottom: 10px;
 }
-
 .msg {
     padding: 8px;
     margin: 5px 0;
     border-radius: 8px;
 }
-
 .user {
     background: #2563eb;
     text-align: right;
 }
-
 .bot {
     background: #374151;
 }
-
 .row {
     display: flex;
     gap: 10px;
 }
-
 input {
     flex: 1;
     padding: 10px;
     border-radius: 8px;
     border: none;
 }
-
 button {
     padding: 10px;
-    border: none;
     border-radius: 8px;
+    border: none;
     background: #3b82f6;
     color: white;
     cursor: pointer;
@@ -76,18 +68,12 @@ button {
     <div id="chat"></div>
 
     <div class="row">
-        <input id="msg" placeholder="Yozing..." onkeypress="handleKey(event)">
+        <input id="msg" placeholder="Yozing..." />
         <button onclick="sendMessage()">Yubor</button>
     </div>
 </div>
 
 <script>
-function handleKey(e) {
-    if (e.key === "Enter") {
-        sendMessage();
-    }
-}
-
 async function sendMessage() {
     let input = document.getElementById("msg");
     let chat = document.getElementById("chat");
@@ -95,22 +81,22 @@ async function sendMessage() {
     let msg = input.value;
     if (!msg) return;
 
-    // user message
     chat.innerHTML += <div class="msg user">${msg}</div>;
     input.value = "";
 
     try {
-        let res = await fetch("/chat", {
+        let res = await fetch("https://fath-chat.onrender.com/chat", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({ message: msg })
+            body: JSON.stringify({
+                message: msg
+            })
         });
 
         let data = await res.json();
 
-        // bot reply
         chat.innerHTML += <div class="msg bot">${data.reply}</div>;
         chat.scrollTop = chat.scrollHeight;
 
@@ -118,6 +104,13 @@ async function sendMessage() {
         chat.innerHTML += <div class="msg bot">xato: ${err}</div>;
     }
 }
+
+// ENTER ishlasin
+document.getElementById("msg").addEventListener("keypress", function(e) {
+    if (e.key === "Enter") {
+        sendMessage();
+    }
+});
 </script>
 
 </body>
