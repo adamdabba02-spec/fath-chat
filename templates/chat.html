@@ -1,115 +1,126 @@
 <!DOCTYPE html>
 <html lang="uz">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FATH Chat</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FATH Chat</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #0f172a;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
 
-<style>
-body {
-    margin: 0;
-    font-family: Arial;
-    background: #0f172a;
-    color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-}
-.chat-box {
-    width: 400px;
-    background: #111827;
-    border-radius: 15px;
-    padding: 20px;
-}
-#chat {
-    height: 300px;
-    overflow-y: auto;
-    margin-bottom: 10px;
-}
-.msg {
-    padding: 8px;
-    margin: 5px 0;
-    border-radius: 8px;
-}
-.user {
-    background: #2563eb;
-    text-align: right;
-}
-.bot {
-    background: #374151;
-}
-.row {
-    display: flex;
-    gap: 10px;
-}
-input {
-    flex: 1;
-    padding: 10px;
-    border-radius: 8px;
-    border: none;
-}
-button {
-    padding: 10px;
-    border-radius: 8px;
-    border: none;
-    background: #3b82f6;
-    color: white;
-    cursor: pointer;
-}
-</style>
+    .chat-box {
+      width: 420px;
+      background: #111827;
+      border-radius: 15px;
+      padding: 20px;
+    }
+
+    #chat {
+      height: 300px;
+      overflow-y: auto;
+      margin-bottom: 10px;
+      border-radius: 10px;
+    }
+
+    .msg {
+      padding: 8px;
+      margin: 6px 0;
+      border-radius: 8px;
+    }
+
+    .user {
+      background: #2563eb;
+      text-align: right;
+    }
+
+    .bot {
+      background: #374151;
+    }
+
+    .row {
+      display: flex;
+      gap: 10px;
+    }
+
+    #msg {
+      flex: 1;
+      padding: 10px;
+      border: none;
+      border-radius: 8px;
+    }
+
+    button {
+      padding: 10px 14px;
+      border: none;
+      border-radius: 8px;
+      background: #3b82f6;
+      color: white;
+      cursor: pointer;
+    }
+  </style>
 </head>
-
 <body>
-
-<div class="chat-box">
+  <div class="chat-box">
     <h2>⚡️ FATH Chat</h2>
-
     <div id="chat"></div>
 
     <div class="row">
-        <input id="msg" placeholder="Yozing..." />
-        <button onclick="sendMessage()">Yubor</button>
+      <input id="msg" placeholder="Yozing...">
+      <button id="sendBtn">Yubor</button>
     </div>
-</div>
+  </div>
 
-<script>
-async function sendMessage() {
-    const input = document.getElementById("msg");
+  <script>
     const chat = document.getElementById("chat");
+    const input = document.getElementById("msg");
+    const button = document.getElementById("sendBtn");
 
-    const msg = input.value.trim();
-    if (!msg) return;
+    function addMessage(text, className) {
+      const div = document.createElement("div");
+      div.className = "msg " + className;
+      div.textContent = text;
+      chat.appendChild(div);
+      chat.scrollTop = chat.scrollHeight;
+    }
 
-    chat.innerHTML += '<div class="msg user">' + msg + '</div>';
-    input.value = "";
+    async function sendMessage() {
+      const msg = input.value.trim();
+      if (!msg) return;
 
-    try {
+      addMessage(msg, "user");
+      input.value = "";
+
+      try {
         const res = await fetch("/chat", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({ message: msg })
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({ message: msg })
         });
 
         const data = await res.json();
-
-        chat.innerHTML += '<div class="msg bot">' + data.reply + '</div>';
-        chat.scrollTop = chat.scrollHeight;
-
-    } catch (err) {
-        chat.innerHTML += '<div class="msg bot">xato: ' + err + '</div>';
+        addMessage(data.reply, "bot");
+      } catch (err) {
+        addMessage("xato: " + err, "bot");
+      }
     }
-}
 
-// ENTER ishlasin
-document.getElementById("msg").addEventListener("keydown", function(e) {
-    if (e.key === "Enter") {
+    button.addEventListener("click", sendMessage);
+
+    input.addEventListener("keydown", function(e) {
+      if (e.key === "Enter") {
         sendMessage();
-    }
-});
-</script>
-
+      }
+    });
+  </script>
 </body>
 </html>
