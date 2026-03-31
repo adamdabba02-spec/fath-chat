@@ -175,7 +175,7 @@ def build_memory_context():
 
     if not parts:
         return "Maxsus xotira yo‘q."
-[3/28/2026 2:27 AM] Real Life: return "\n".join(parts)
+        return "\n".join(parts)
 
 # ======================
 # SYSTEM RULES
