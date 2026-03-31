@@ -1,4 +1,4 @@
-[3/31/2026 10:29 AM] Real Life: from flask import Flask, request, jsonify, render_template
+from flask import Flask, request, jsonify, render_template
 from openai import OpenAI
 import os
 import json
@@ -155,7 +155,7 @@ def chat():
         ]
         messages.extend(history)
         messages.append({"role": "user", "content": msg})
-[3/31/2026 10:29 AM] Real Life: res = client.chat.completions.create(
+        res = client.chat.completions.create(
             model=MODEL_NAME,
             messages=messages,
             temperature=0.4
@@ -177,3 +177,4 @@ def chat():
 # ======================
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)
+        
