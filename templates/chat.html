@@ -11,9 +11,9 @@ body {
     font-family: Arial;
     background: #0f172a;
     color: white;
-    height: 100vh;
 }
 
+/* KONTAINER */
 .chat-container {
     max-width: 500px;
     margin: auto;
@@ -48,6 +48,7 @@ body {
     padding: 10px;
     display: flex;
     flex-direction: column;
+    margin-bottom: 80px; /* 🔥 INPUT JOY */
 }
 
 /* MESSAGE */
@@ -57,7 +58,6 @@ body {
     border-radius: 15px;
     margin: 5px;
     word-wrap: break-word;
-    animation: fade 0.2s ease;
 }
 
 .user {
@@ -72,11 +72,14 @@ body {
 
 /* INPUT */
 .input-box {
+    position: fixed; /* 🔥 ENG MUHIM */
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    max-width: 500px;
     display: flex;
     padding: 10px;
     background: #111827;
-    position: sticky;
-    bottom: 0;
 }
 
 input {
@@ -94,12 +97,6 @@ button {
     border-radius: 10px;
     background: #22c55e;
     color: white;
-}
-
-/* ANIMATION */
-@keyframes fade {
-    from {opacity: 0; transform: translateY(5px);}
-    to {opacity: 1;}
 }
 </style>
 </head>
@@ -123,7 +120,6 @@ button {
 </div>
 
 <script>
-
 function addMessage(text, type) {
     const chat = document.getElementById("chat");
 
@@ -136,4 +132,29 @@ function addMessage(text, type) {
 }
 
 async function send() {
-    let input = document.getElementBy
+    let input = document.getElementById("msg");
+    let msg = input.value.trim();
+
+    if (!msg) return;
+
+    addMessage(msg, "user");
+    input.value = "";
+
+    try {
+        const res = await fetch("/chat", {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({message: msg})
+        });
+
+        const data = await res.json();
+
+        addMessage(data.reply, "bot");
+    } catch (e) {
+        addMessage("Server bilan aloqa yo‘q", "bot");
+    }
+}
+</script>
+
+</body>
+</html>
