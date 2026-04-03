@@ -13,20 +13,32 @@ body {
     color: white;
 }
 
+/* 🔥 TO‘G‘RILANDI */
 .chat-container {
     max-width: 500px;
-    margin: auto;
     height: 100vh;
+    margin: auto;
     display: flex;
     flex-direction: column;
 }
 
+/* 🔥 LOGO + HEADER */
 .header {
-    padding: 15px;
+    padding: 10px;
     text-align: center;
-    font-size: 20px;
     background: #111827;
     border-bottom: 1px solid #1f2937;
+}
+
+.header img {
+    width: 40px;
+    display: block;
+    margin: auto;
+}
+
+.header h2 {
+    margin: 5px 0 0;
+    font-size: 18px;
 }
 
 #chat {
@@ -90,7 +102,11 @@ button {
 
 <div class="chat-container">
 
-<div class="header">⚡️ FATH Chat</div>
+<!-- 🔥 LOGO QO‘SHILDI -->
+<div class="header">
+    <img src="/static/logo.png">
+    <h2>FATH Chat</h2>
+</div>
 
 <div id="chat"></div>
 
