@@ -11,18 +11,18 @@ body {
     font-family: Arial;
     background: #0f172a;
     color: white;
+    height: 100vh;
 }
 
-/* 🔥 TO‘G‘RILANDI */
 .chat-container {
     max-width: 500px;
-    height: 100vh;
     margin: auto;
+    height: 100vh;
     display: flex;
     flex-direction: column;
 }
 
-/* 🔥 LOGO + HEADER */
+/* HEADER */
 .header {
     padding: 10px;
     text-align: center;
@@ -41,6 +41,7 @@ body {
     font-size: 18px;
 }
 
+/* CHAT */
 #chat {
     flex: 1;
     overflow-y: auto;
@@ -49,6 +50,7 @@ body {
     flex-direction: column;
 }
 
+/* MESSAGE */
 .msg {
     max-width: 75%;
     padding: 10px;
@@ -68,10 +70,13 @@ body {
     align-self: flex-start;
 }
 
+/* INPUT */
 .input-box {
     display: flex;
     padding: 10px;
     background: #111827;
+    position: sticky;
+    bottom: 0;
 }
 
 input {
@@ -91,6 +96,7 @@ button {
     color: white;
 }
 
+/* ANIMATION */
 @keyframes fade {
     from {opacity: 0; transform: translateY(5px);}
     to {opacity: 1;}
@@ -102,9 +108,8 @@ button {
 
 <div class="chat-container">
 
-<!-- 🔥 LOGO QO‘SHILDI -->
 <div class="header">
-    <img src="/static/logo.png">
+    <img src="/static/logo.png" onerror="this.style.display='none'">
     <h2>FATH Chat</h2>
 </div>
 
@@ -118,35 +123,17 @@ button {
 </div>
 
 <script>
+
 function addMessage(text, type) {
     const chat = document.getElementById("chat");
+
     const div = document.createElement("div");
     div.className = "msg " + type;
     div.innerText = text;
+
     chat.appendChild(div);
     chat.scrollTop = chat.scrollHeight;
 }
 
 async function send() {
-    let input = document.getElementById("msg");
-    let msg = input.value.trim();
-
-    if (!msg) return;
-
-    addMessage(msg, "user");
-    input.value = "";
-
-    const res = await fetch("/chat", {
-        method: "POST",
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify({message: msg})
-    });
-
-    const data = await res.json();
-
-    addMessage(data.reply, "bot");
-}
-</script>
-
-</body>
-</html>
+    let input = document.getElementBy
