@@ -1,11 +1,34 @@
-from flask import Flask, render_template, request, jsonify, session
+from flask import Flask, render_template, request, jsonify, session, Response
 from openai import OpenAI
 import os
 
 app = Flask(__name__)
 app.secret_key = "secret-key"
 
-# API KEY (Render uchun env, local uchun yozib qo‘yishing mumkin)
+# ======================
+# LOGIN (Basic Auth)
+# ======================
+USERNAME = "admin"
+PASSWORD = "1234"
+
+def check_auth(username, password):
+    return username == USERNAME and password == PASSWORD
+
+def authenticate():
+    return Response(
+        "Login kerak", 401,
+        {"WWW-Authenticate": 'Basic realm="Login Required"'}
+    )
+
+@app.before_request
+def require_login():
+    auth = request.authorization
+    if not auth or not check_auth(auth.username, auth.password):
+        return authenticate()
+
+# ======================
+# API KEY
+# ======================
 client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
 
 MODEL_NAME = "gpt-4o-mini"
@@ -48,7 +71,6 @@ def generate_reply(user_message):
 
     messages = [{"role": "system", "content": SYSTEM_RULES}]
 
-    # 🔥 HISTORYNI CHEKLASH (tezlik uchun)
     history = history[-6:]
     messages += history
 
@@ -58,13 +80,12 @@ def generate_reply(user_message):
         response = client.chat.completions.create(
             model=MODEL_NAME,
             messages=messages,
-            max_tokens=120,      # ⚡️ tezlik
-            temperature=0.7      # ⚡️ tabiiylik
+            max_tokens=120,
+            temperature=0.7
         )
 
         reply = response.choices[0].message.content
 
-        # history saqlash
         history.append({"role": "user", "content": user_message})
         history.append({"role": "assistant", "content": reply})
 
@@ -75,14 +96,12 @@ def generate_reply(user_message):
     except Exception as e:
         return f"Xato: {str(e)}"
 
-
 # ======================
 # ROUTES
 # ======================
 @app.route("/")
 def home():
     return render_template("chat.html")
-
 
 @app.route("/chat", methods=["POST"])
 def chat():
@@ -92,7 +111,6 @@ def chat():
     reply = generate_reply(user_message)
 
     return jsonify({"reply": reply})
-
 
 # ======================
 # RUN
