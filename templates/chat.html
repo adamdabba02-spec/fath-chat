@@ -107,7 +107,7 @@ button {
 
     <!-- HEADER -->
     <div class="header">
-        <img src="/logo.png" class="logo">
+        <img src="{{ url_for('static', filename='logo.png') }}" class="logo">
         <span class="title">FATH Chat</span>
     </div>
 
@@ -134,25 +134,4 @@ function send() {
     fetch("/chat", {
         method: "POST",
         headers: {"Content-Type": "application/json"},
-        body: JSON.stringify({message: text})
-    })
-    .then(res => res.json())
-    .then(data => addMsg(data.reply, "bot"));
-}
-
-function addMsg(text, type) {
-    let div = document.createElement("div");
-    div.className = "msg " + type;
-    div.innerText = text;
-    document.getElementById("chat").appendChild(div);
-    div.scrollIntoView();
-}
-
-/* ENTER */
-document.getElementById("msg").addEventListener("keypress", function(e) {
-    if (e.key === "Enter") send();
-});
-</script>
-
-</body>
-</html>
+        body
