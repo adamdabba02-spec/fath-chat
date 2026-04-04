@@ -6,9 +6,7 @@
 <title>FATH Chat</title>
 
 <style>
-* {
-    box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
 body {
     margin: 0;
@@ -21,7 +19,7 @@ body {
 .chat-container {
     max-width: 500px;
     margin: auto;
-    height: 100dvh;
+    height: 100vh;
     display: flex;
     flex-direction: column;
 }
@@ -32,13 +30,12 @@ body {
     text-align: center;
     background: #111827;
     border-bottom: 1px solid #1f2937;
-    flex-shrink: 0;
 }
 
-.logo {
-    width: 40px;
+.header img {
     height: 40px;
-    border-radius: 50%;
+    vertical-align: middle;
+    margin-right: 10px;
 }
 
 /* CHAT */
@@ -75,9 +72,84 @@ body {
     padding: 10px;
     background: #111827;
     border-top: 1px solid #1f2937;
-    flex-shrink: 0;
 }
 
 input {
     flex: 1;
-    padding:
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+}
+
+button {
+    margin-left: 10px;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 10px;
+    background: #2563eb;
+    color: white;
+    cursor: pointer;
+}
+</style>
+</head>
+
+<body>
+
+<div class="chat-container">
+
+    <!-- HEADER -->
+    <div class="header">
+        <img src="/logo.png">
+        FATH Chat
+    </div>
+
+    <!-- CHAT -->
+    <div id="chat"></div>
+
+    <!-- INPUT -->
+    <div class="input-box">
+        <input id="msg" placeholder="Yoz..." />
+        <button onclick="send()">Yubor</button>
+    </div>
+
+</div>
+
+<script>
+function send() {
+    let input = document.getElementById("msg");
+    let text = input.value.trim();
+    if (!text) return;
+
+    addMsg(text, "user");
+    input.value = "";
+
+    fetch("/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message: text })
+    })
+    .then(res => res.json())
+    .then(data => {
+        addMsg(data.reply, "bot");
+    });
+}
+
+function addMsg(text, type) {
+    let div = document.createElement("div");
+    div.className = "msg " + type;
+    div.innerText = text;
+    document.getElementById("chat").appendChild(div);
+    div.scrollIntoView();
+}
+
+/* ENTER ishlaydi */
+document.getElementById("msg").addEventListener("keypress", function(e) {
+    if (e.key === "Enter") {
+        send();
+    }
+});
+</script>
+
+</body>
+</html>
