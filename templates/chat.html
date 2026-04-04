@@ -37,6 +37,7 @@ body {
     flex: 1;
     overflow-y: auto;
     padding: 10px;
+    padding-bottom: 80px; /* input joy qoldiradi */
     display: flex;
     flex-direction: column;
 }
@@ -62,28 +63,31 @@ body {
 
 /* INPUT FIXED */
 .input-box {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    max-width: 500px;
+    margin: auto;
     display: flex;
     padding: 10px;
     background: #111827;
     border-top: 1px solid #1f2937;
-    position: sticky;
-    bottom: 0;
 }
 
 /* INPUT */
 input {
     flex: 1;
-    padding: 10px;
+    padding: 12px;
     border-radius: 10px;
     border: none;
-    outline: none;
     font-size: 14px;
 }
 
 /* BUTTON */
 button {
     margin-left: 8px;
-    padding: 10px 14px;
+    padding: 12px 14px;
     border-radius: 10px;
     background: #22c55e;
     color: white;
@@ -105,12 +109,12 @@ button {
     <!-- CHAT -->
     <div id="chat"></div>
 
-    <!-- INPUT -->
-    <div class="input-box">
-        <input id="msg" placeholder="Yoz..." />
-        <button onclick="send()">Yubor</button>
-    </div>
+</div>
 
+<!-- INPUT tashqarida -->
+<div class="input-box">
+    <input id="msg" placeholder="Yoz..." />
+    <button onclick="send()">Yubor</button>
 </div>
 
 <script>
