@@ -6,8 +6,6 @@
 <title>FATH Chat</title>
 
 <style>
-* { box-sizing: border-box; }
-
 body {
     margin: 0;
     font-family: Arial;
@@ -26,7 +24,7 @@ body {
 
 /* HEADER */
 .header {
-    padding: 10px;
+    padding: 12px;
     text-align: center;
     background: #111827;
     border-bottom: 1px solid #1f2937;
@@ -35,7 +33,6 @@ body {
 .header img {
     height: 40px;
     vertical-align: middle;
-    margin-right: 10px;
 }
 
 /* CHAT */
@@ -53,7 +50,6 @@ body {
     padding: 10px;
     border-radius: 15px;
     margin: 5px;
-    word-wrap: break-word;
 }
 
 .user {
@@ -79,17 +75,15 @@ input {
     padding: 10px;
     border-radius: 10px;
     border: none;
-    outline: none;
 }
 
 button {
     margin-left: 10px;
-    padding: 10px 15px;
+    padding: 10px;
     border: none;
     border-radius: 10px;
     background: #2563eb;
     color: white;
-    cursor: pointer;
 }
 </style>
 </head>
@@ -101,7 +95,6 @@ button {
     <!-- HEADER -->
     <div class="header">
         <img src="/logo.png">
-        FATH Chat
     </div>
 
     <!-- CHAT -->
@@ -126,13 +119,11 @@ function send() {
 
     fetch("/chat", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ message: text })
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({message: text})
     })
     .then(res => res.json())
-    .then(data => {
-        addMsg(data.reply, "bot");
-    });
+    .then(data => addMsg(data.reply, "bot"));
 }
 
 function addMsg(text, type) {
@@ -143,11 +134,9 @@ function addMsg(text, type) {
     div.scrollIntoView();
 }
 
-/* ENTER ishlaydi */
+/* ENTER */
 document.getElementById("msg").addEventListener("keypress", function(e) {
-    if (e.key === "Enter") {
-        send();
-    }
+    if (e.key === "Enter") send();
 });
 </script>
 
