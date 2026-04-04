@@ -24,21 +24,11 @@ body {
 
 /* HEADER */
 .header {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-    padding: 15px;
+    text-align: center;
+    padding: 18px;
     background: #111827;
     border-bottom: 1px solid #1f2937;
-}
-
-.logo {
-    height: 55px;
-}
-
-.title {
-    font-size: 22px;
+    font-size: 24px;
     font-weight: bold;
 }
 
@@ -58,7 +48,6 @@ body {
     border-radius: 15px;
     margin: 6px;
     font-size: 16px;
-    line-height: 1.4;
 }
 
 .user {
@@ -107,8 +96,7 @@ button {
 
     <!-- HEADER -->
     <div class="header">
-        <img src="{{ url_for('static', filename='logo.png') }}" class="logo">
-        <span class="title">FATH Chat</span>
+        FATH Chat
     </div>
 
     <!-- CHAT -->
@@ -134,4 +122,25 @@ function send() {
     fetch("/chat", {
         method: "POST",
         headers: {"Content-Type": "application/json"},
-        body
+        body: JSON.stringify({message: text})
+    })
+    .then(res => res.json())
+    .then(data => addMsg(data.reply, "bot"));
+}
+
+function addMsg(text, type) {
+    let div = document.createElement("div");
+    div.className = "msg " + type;
+    div.innerText = text;
+    document.getElementById("chat").appendChild(div);
+    div.scrollIntoView();
+}
+
+/* ENTER */
+document.getElementById("msg").addEventListener("keypress", function(e) {
+    if (e.key === "Enter") send();
+});
+</script>
+
+</body>
+</html>
