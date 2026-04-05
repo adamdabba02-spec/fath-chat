@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>FATH Chat</title>
 
 <style>
@@ -18,21 +18,23 @@ body {
     height: 100vh;
 }
 
+/* KONTEYNER */
 .chat-container {
     display: flex;
     flex-direction: column;
-    height: 100vh;
+    height: 100dvh; /* 🔥 MUHIM (telefon fix) */
 }
 
+/* HEADER */
 .header {
     padding: 15px;
     text-align: center;
     font-size: 20px;
     background: #111827;
     border-bottom: 1px solid #1f2937;
-    flex-shrink: 0;
 }
 
+/* CHAT */
 #chat {
     flex: 1;
     overflow-y: auto;
@@ -41,7 +43,103 @@ body {
     flex-direction: column;
 }
 
+/* MESSAGE */
 .msg {
     max-width: 75%;
     padding: 10px;
     border-radius: 15px;
+    margin: 5px;
+    word-wrap: break-word;
+}
+
+.user {
+    background: #2563eb;
+    align-self: flex-end;
+}
+
+.bot {
+    background: #1e293b;
+    align-self: flex-start;
+}
+
+/* INPUT */
+.input-box {
+    display: flex;
+    padding: 10px;
+    background: #111827;
+    gap: 10px;
+    padding-bottom: calc(10px + env(safe-area-inset-bottom)); /* 🔥 past kesilmasin */
+}
+
+input {
+    flex: 1;
+    padding: 12px;
+    border-radius: 12px;
+    border: none;
+    outline: none;
+    font-size: 16px;
+}
+
+button {
+    padding: 12px 18px;
+    border: none;
+    border-radius: 12px;
+    background: #22c55e;
+    color: white;
+    font-size: 16px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="chat-container">
+
+<div class="header">FATH Chat</div>
+
+<div id="chat"></div>
+
+<div class="input-box">
+    <input id="msg" placeholder="Type message..." onkeypress="if(event.key==='Enter') send()">
+    <button onclick="send()">Send</button>
+</div>
+
+</div>
+
+<script>
+function addMessage(text, type) {
+    const chat = document.getElementById("chat");
+    const div = document.createElement("div");
+    div.className = "msg " + type;
+    div.innerText = text;
+    chat.appendChild(div);
+    chat.scrollTop = chat.scrollHeight;
+}
+
+async function send() {
+    let input = document.getElementById("msg");
+    let msg = input.value.trim();
+
+    if (!msg) return;
+
+    addMessage(msg, "user");
+    input.value = "";
+
+    try {
+        const res = await fetch("/chat", {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({message: msg})
+        });
+
+        const data = await res.json();
+        addMessage(data.reply, "bot");
+
+    } catch {
+        addMessage("Server error", "bot");
+    }
+}
+</script>
+
+</body>
+</html>
