@@ -1,64 +1,73 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="uz">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>FATH Chat</title>
 
 <style>
-* { box-sizing: border-box; }
-
 body {
     margin: 0;
-    background: #0f172a;
-    color: white;
     font-family: Arial;
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
+    background: linear-gradient(180deg, #0f172a, #1e293b);
+    color: white;
 }
 
 /* HEADER */
 .header {
-    padding: 15px;
+    position: fixed;
+    top: env(safe-area-inset-top);
+    left: 0;
+    width: 100%;
     text-align: center;
+    padding: 14px;
     background: #111827;
+    border-bottom: 1px solid #1f2937;
     font-size: 20px;
-    flex-shrink: 0;
+    font-weight: bold;
+    z-index: 1000;
 }
 
 /* CHAT */
 #chat {
-    flex: 1;
+    margin-top: 70px;
+    margin-bottom: 90px;
+    height: calc(100vh - 160px);
     overflow-y: auto;
     padding: 10px;
+    display: flex;
+    flex-direction: column;
 }
 
 /* MESSAGE */
 .msg {
+    max-width: 80%;
     padding: 10px;
+    border-radius: 12px;
     margin: 5px;
-    border-radius: 10px;
-    max-width: 70%;
-    word-wrap: break-word;
-    font-size: 16px;
+    font-size: 14px;
 }
 
 .user {
     background: #2563eb;
-    margin-left: auto;
+    align-self: flex-end;
 }
 
 .bot {
     background: #1e293b;
+    align-self: flex-start;
 }
 
-/* INPUT BOX */
+/* INPUT */
 .input-box {
+    position: fixed;
+    bottom: env(safe-area-inset-bottom);
+    left: 0;
+    width: 100%;
     display: flex;
     padding: 10px;
     background: #111827;
-    flex-shrink: 0;
+    border-top: 1px solid #1f2937;
 }
 
 /* INPUT */
@@ -67,45 +76,18 @@ input {
     padding: 12px;
     border-radius: 10px;
     border: none;
-    outline: none;
-    font-size: 16px;
+    font-size: 14px;
 }
 
 /* BUTTON */
 button {
-    padding: 12px 18px;
-    margin-left: 10px;
-    background: #22c55e;
-    border: none;
+    margin-left: 8px;
+    padding: 12px 14px;
     border-radius: 10px;
+    background: #22c55e;
     color: white;
-    font-size: 16px;
-}
-
-/* 📱 MOBILE FIX */
-@media (max-width: 600px) {
-
-.header {
-    font-size: 16px;
-    padding: 10px;
-}
-
-.msg {
-    max-width: 90%;
-    font-size: 14px;
-    padding: 8px;
-}
-
-input {
-    font-size: 14px;
-    padding: 10px;
-}
-
-button {
-    font-size: 14px;
-    padding: 10px;
-}
-
+    border: none;
+    font-weight: bold;
 }
 </style>
 </head>
@@ -117,44 +99,40 @@ button {
 <div id="chat"></div>
 
 <div class="input-box">
-<input id="msg" placeholder="Type message..." onkeypress="if(event.key==='Enter') send()">
-<button onclick="send()">Send</button>
+    <input id="msg" placeholder="Yoz..." />
+    <button onclick="send()">Yubor</button>
 </div>
 
 <script>
-function addMessage(text, type) {
+function send() {
+    let input = document.getElementById("msg");
+    let text = input.value.trim();
+    if (!text) return;
+
+    addMsg(text, "user");
+    input.value = "";
+
+    fetch("/chat", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({message: text})
+    })
+    .then(res => res.json())
+    .then(data => addMsg(data.reply, "bot"));
+}
+
+function addMsg(text, type) {
     let div = document.createElement("div");
     div.className = "msg " + type;
     div.innerText = text;
-
-    let chat = document.getElementById("chat");
-    chat.appendChild(div);
-    chat.scrollTop = chat.scrollHeight;
+    document.getElementById("chat").appendChild(div);
+    div.scrollIntoView();
 }
 
-async function send() {
-    let input = document.getElementById("msg");
-    let msg = input.value.trim();
-
-    if (!msg) return;
-
-    addMessage(msg, "user");
-    input.value = "";
-
-    try {
-        let res = await fetch("/chat", {
-            method: "POST",
-            headers: {"Content-Type": "application/json"},
-            body: JSON.stringify({message: msg})
-        });
-
-        let data = await res.json();
-        addMessage(data.reply, "bot");
-
-    } catch {
-        addMessage("Server error", "bot");
-    }
-}
+/* ENTER */
+document.getElementById("msg").addEventListener("keypress", function(e) {
+    if (e.key === "Enter") send();
+});
 </script>
 
 </body>
