@@ -2,7 +2,7 @@
 <html lang="uz">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>FATH Chat</title>
 
 <style>
@@ -13,22 +13,21 @@ html, body {
     background: linear-gradient(180deg,#0f172a,#1e293b);
 }
 
-/* MAIN */
-.wrapper {
+/* SAFE HEIGHT (ENG MUHIM) */
+.app {
+    height: 100dvh;
     display: flex;
     flex-direction: column;
-    height: 100%;
 }
 
 /* HEADER */
 .header {
     text-align: center;
-    padding: 15px;
+    padding: 14px;
     background: #111827;
     color: white;
+    font-size: 18px;
     font-weight: bold;
-    font-size: 20px;
-    flex-shrink: 0;
 }
 
 /* CHAT */
@@ -60,19 +59,20 @@ html, body {
     align-self: flex-start;
 }
 
-/* INPUT */
+/* INPUT FIXED */
 .input-box {
     display: flex;
     padding: 10px;
     background: #111827;
-    flex-shrink: 0;
+    position: sticky;
+    bottom: 0;
 }
 
-/* INPUT FIELD */
+/* INPUT */
 input {
     flex: 1;
     padding: 12px;
-    border-radius: 10px;
+    border-radius: 12px;
     border: none;
     font-size: 14px;
 }
@@ -81,18 +81,33 @@ input {
 button {
     margin-left: 8px;
     padding: 12px 14px;
-    border-radius: 10px;
+    border-radius: 12px;
     background: #22c55e;
     color: white;
     border: none;
     font-weight: bold;
+}
+
+/* TELEFON MAX */
+@media (max-width: 600px) {
+    .header {
+        font-size: 16px;
+    }
+
+    input {
+        font-size: 13px;
+    }
+
+    button {
+        padding: 10px;
+    }
 }
 </style>
 </head>
 
 <body>
 
-<div class="wrapper">
+<div class="app">
 
     <div class="header">FATH Chat</div>
 
