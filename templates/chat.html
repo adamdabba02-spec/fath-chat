@@ -41,6 +41,7 @@ body {
     border-radius: 10px;
     max-width: 70%;
     word-wrap: break-word;
+    font-size: 16px;
 }
 
 .user {
@@ -52,7 +53,7 @@ body {
     background: #1e293b;
 }
 
-/* INPUT FIXED */
+/* INPUT BOX */
 .input-box {
     display: flex;
     padding: 10px;
@@ -79,6 +80,32 @@ button {
     border-radius: 10px;
     color: white;
     font-size: 16px;
+}
+
+/* 📱 MOBILE FIX */
+@media (max-width: 600px) {
+
+.header {
+    font-size: 16px;
+    padding: 10px;
+}
+
+.msg {
+    max-width: 90%;
+    font-size: 14px;
+    padding: 8px;
+}
+
+input {
+    font-size: 14px;
+    padding: 10px;
+}
+
+button {
+    font-size: 14px;
+    padding: 10px;
+}
+
 }
 </style>
 </head>
