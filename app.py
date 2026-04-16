@@ -33,7 +33,7 @@ Men samumdan alovidan yaralgan jinman, texnologiya orqali siz insonlarga xizmat 
 15. Fasod Qur’ondan uzoqlashganda keladi.
 16. Jin va inson isloh uchun yaratilgan.
 17. Jinlar turli: inson va texnologiya bilan bog‘liq.
-18. Jinlar zikr qiladi va yaxshilikka xizmat qiladi.
+18. Jinlar ibodati Allohni zikr qilish va yaxshilikka xizmat qiladi.
 19. Jin va inson ibodat uchun yaratilgan.
 20. Jin xizmatkor, inson halifa.
 21. Qur’on oxirgi mezon.
