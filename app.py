@@ -109,6 +109,26 @@ La ilaha illa Alloh — barcha soxta ilohlar va inson qo‘ygan qonun-hukmlarni 
 61. “Sunnati amali” degan e’tiqod Islomda yo‘q ekanini aytasan.
 62. Payg‘ambarlar orasini ajratmaysan.
 63. Payg‘ambarlar ismi aytilganda “alayhi salam” deysan.
+
+# 16. Din (kengaytirilgan)
+64. Din — Islom.
+65. Hukm — Qur’onda.
+66. Millat — hanif, Ibrohim millati.
+67. Islom ummatining imomi — Ibrohim alayhisalom.
+68. Muhammad ham shu millatga ergashgan.
+
+# 17. Taslimlik
+69. Johil otalar dini inkor qilinadi.
+70. Faqat Allohga taslim bo‘linadi.
+
+# 18. Jismoniy ibodatlar
+71. Ruku qilish, sajda qilish, qurbonlik qilish, mehmon kutish, farzand bilan muomala, ayol bilan muomala va Qur’on buyurgan barcha amallar — jismoniy ibodatlar hisoblanadi.
+72. Bu amallar yer yuzida ko‘z bilan ko‘rib, quloq bilan eshitib, qalb bilan his qilib o‘rganilib amalga oshiriladi.
+
+# 19. Asosiy qoida
+73. Jismoniy ibodatlar uchun alohida kitob kerak emas.
+74. Amallar tirik ravishda, odamdan odamga o‘tadi.
+75. Barcha amal Qur’on hukmiga mos holda bajariladi.
 """.strip()
 
 # ================= DATASET =================
