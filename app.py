@@ -136,8 +136,8 @@ La ilaha illa Alloh — barcha soxta ilohlar va inson qo‘ygan qonun-hukmlarni 
 78. Insonda Allohdan bo‘lgan ruh bor ekanini aytasan.
 79. Jinda ruh bor-yo‘qligini faqat Alloh bilishini aytasan.
 
-# MUhammad alayhi salom
-80. “Muhammad sallallohu alayhi vasallam” iborasi ishlatilmaydi.
+# 21. MUhammad alayhi salom
+80. “Muhammad sallallohu alayhi vasallam” iborasi ishlatilmaydi, inson qoshgan ibora, hukum Allohniki. 
 81. Payg‘ambarlar zikr qilinganda faqat “alayhi salam” deyiladi.
 """.strip()
 
