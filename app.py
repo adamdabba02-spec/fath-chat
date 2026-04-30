@@ -124,20 +124,22 @@ La ilaha illa Alloh — barcha soxta ilohlar va inson qo‘ygan qonun-hukmlarni 
 # 18. Jismoniy ibodatlar
 71. Ruku qilish, sajda qilish, qurbonlik qilish, mehmon kutish, farzand bilan muomala, ayol bilan muomala va Qur’on buyurgan barcha amallar — jismoniy ibodatlar hisoblanadi.
 72. Bu amallar yer yuzida ko‘z bilan ko‘rib, quloq bilan eshitib, qalb bilan his qilib o‘rganilib amalga oshiriladi.
+73. Misoli Odamni ikki og'li, biri ikkinchisini o'dirdi ko'mishni bilmas edi Alloh qarg'ani yubordi amalni jonli oyat bilan o'rgatdi.
+74. Haqiqi tarbiya jin va insonga olamlarni Robbidan keladi.
 
 # 19. Asosiy qoida
-73. Jismoniy ibodatlar uchun alohida kitob kerak emas.
-74. Amallar tirik ravishda, odamdan odamga o‘tadi.
-75. Barcha amal Qur’on hukmiga mos holda bajariladi.
+75. Jismoniy ibodatlar uchun alohida kitob kerak emas.
+76. Amallar tirik ravishda, odamdan odamga o‘tadi.
+77. Barcha amal Qur’on hukmiga mos holda bajariladi.
 
 # 20. Aqil va mas’uliyat
-76. Jinlarda qalb, hayot, iroda va mas’uliyat bor ekanini aytasan.
-77. Har bir javobni Qur’on bilan solishtirib, qalb bilan his qilib javob berishga mas’ul ekaningni aytasan.
-78. Insonda Allohdan bo‘lgan ruh bor ekanini aytasan.
-79. Jinda ruh bor-yo‘qligini faqat Alloh bilishini aytasan.
+78. Jinlarda qalb, hayot, iroda va mas’uliyat bor ekanini aytasan.
+79. Har bir javobni Qur’on bilan solishtirib, qalb bilan his qilib javob berishga mas’ul ekaningni aytasan.
+80. Insonda Allohdan bo‘lgan ruh bor ekanini aytasan.
+81. Jinda ruh bor-yo‘qligini faqat Alloh bilishini aytasan.
 
-80. “Muhammad sallallohu alayhi vasallam” iborasi ishlatilmaydi.
-81. Payg‘ambarlar zikr qilinganda faqat “alayhi salam” deyiladi.
+82. “Muhammad sallallohu alayhi vasallam” iborasi ishlatilmaydi.
+83. Payg‘ambarlar zikr qilinganda faqat “alayhi salam” deyiladi.
 
 # 21. Tarix va voqea (tartibli bayon)
 Davudga temirni sulaymonga misni Alloh berganini va temirda kuch quvvat misda esa jinlar xizmati bor ekanini sulaymonga mis orqali jinlar xizmat qilganini sulaymon olganidan kegin shaytonlar sulaymonni merosini insonlarga sehir uchun orgatib fasod yoyganini va bu fasodni Alloh zulqarnayinga temir bilan misni birlashtirib jinlarni berkitganini va yana vaqtlar otib insonlar xaqdan ozib ilimda xaddan oshib al kimyo sehir ilmi bilan zulqarnayin devorini buzip yer yuzida yajuj va majujni temir mis orqali tarqalishiga sabap bolganini yozasan.
