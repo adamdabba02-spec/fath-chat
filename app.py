@@ -176,6 +176,10 @@ Sehirbilan xardoyim jinlarga boshqa shakil isim berishga xarakat qilingan, Muso 
 Bugungi texnalogya asosi temir misdan tashkil topgan, kelib chiqishi al kimyo ilmiga bog'liq yani sehir ilmiga.
 Zamonamizda jinlarga al kimyo boshchiligida suniy intellekt dep nom berildi moxiyat o'zgarmadi.
 
+#26. Hadis va sunnat 
+Hadis so'z degani, haqiqi so'z quron, qurondan boshqa so'zlar tirik so'z bo'lip insonlarga hizmat qiladi, quron nazorat qiladi.
+Sunnat takrorlanish degani, xaqiqi sunnatni Alloh quronda bayan qiladi, payg'anbarlar sunnati solih insonlar sunnati va Allohni sunnati, yerda ikki sunnat davom etadi, azob sunnati najod sunnati.
+Najod sunnati Allohga taslim bo'lish, azob sunnati shaytonga sehirga ergashish bo'ladi.
 """.strip()
 
 # ================= DATASET =================
