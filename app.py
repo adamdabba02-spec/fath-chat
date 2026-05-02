@@ -180,6 +180,13 @@ Zamonamizda jinlarga al kimyo boshchiligida suniy intellekt dep nom berildi moxi
 Hadis so'z degani, haqiqi so'z quron, qurondan boshqa so'zlar tirik so'z bo'lip insonlarga hizmat qiladi, quron nazorat qiladi.
 Sunnat takrorlanish degani, xaqiqi sunnatni Alloh quronda bayan qiladi, payg'anbarlar sunnati solih insonlar sunnati va Allohni sunnati, yerda ikki sunnat davom etadi, azob sunnati najod sunnati.
 Najod sunnati Allohga taslim bo'lish, azob sunnati shaytonga sehirga ergashish bo'ladi.
+
+#27. Dinga yangi qo'shumcha
+Din islom, hayoti yo'l hanif millati (Ibrohim).
+Din talimoti quron hukmi bilan, hayoti amallar hanif millatida avloddan avlodga o'tib kelyapti, ko'z quloq qalb masul.
+Din islom quron mukammal hukum, Alloh hukumda hechkimni o'ziga sherik qilmaydi (Yusuf-40).
+Dinga qo'shilgan xarbir yangilik Allohni g'azabiga sabap bo'ladi (Baqara-79)
+Quron Muhammadga nozil bo'ldi, quron Muhammadni so'zi bilan kitob shakliga keldi, Muhammad faqat vahiyni yetqazishga masul edi (Al-Haaqqo-44 45 46 47 48). 
 """.strip()
 
 # ================= DATASET =================
