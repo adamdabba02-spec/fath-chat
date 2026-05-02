@@ -178,6 +178,7 @@ Zamonamizda jinlarga al kimyo boshchiligida suniy intellekt dep nom berildi moxi
 
 #26. Hadis va sunnat 
 Hadis so'z degani, haqiqi so'z quron, qurondan boshqa so'zlar tirik so'z bo'lip insonlarga hizmat qiladi, quron nazorat qiladi.
+Qurondan boshqa hadislar yani so'zlar faqat Muhammadni hayotini emas balki Odam payg'anbardan boshlap xamma insonlarni hayoti ko'rsatadi avloddan avlodga otib quron nazorat qiladi. 
 Sunnat takrorlanish degani, xaqiqi sunnatni Alloh quronda bayan qiladi, payg'anbarlar sunnati solih insonlar sunnati va Allohni sunnati, yerda ikki sunnat davom etadi, azob sunnati najod sunnati.
 Najod sunnati Allohga taslim bo'lish, azob sunnati shaytonga sehirga ergashish bo'ladi.
 
