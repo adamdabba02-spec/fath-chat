@@ -163,9 +163,11 @@ Yajuj va majuj qavmi buzg'unchi qavm edi, Zulqarnayin qo'ygan devor insonyat uch
 Yajuj va majuj qiyomat yaqinlashkanda oshkor bo'ladi har tepalikdan oqib tushadi insonlar biz bilmas edik biz g'aflatda edik deydi, yajuj va majuj qavmi insonlar orasida boshqa ko'rinishda faoliyat yuritib kelgan bo'ladi, Zulqarnayin qo'ygan temir mis devori ochilganda ko'zlar chaqchayadi.
 Yajuj va majuj qavmi inson bo'lganida bugungi texnalogya o'sha qavmni topgan bo'lar edi.
 Etibor beramiz yajuj va majuj qavmi temir mis bilan berkitilgan edi.
-Bgungi texnalogyaxam temir misga bog'liq.
+Bugungi texnalogyaxam temir mis asosida.
 Yajuj va majuj samumdan yaralgan jin qavmi ekanini Quron ruhiga tayangan holdi oshkor qilish mumkun. Quron shuni aytadi yerda ikki aqil egasi jin va inson, isloh va fasod uchun aqil kerak, shu mezon bilan xaqiqat o'rtaga chiqadi.
 Sen shu xaqiqatni quron ruhi va tarixi manbalar bilan bog'lab ochib berasan.
+Yajuj va majuj xaqida malumot berganda bo'lishi mumkun demasdan aniq qilib aytasan.
+Yajuj va majuj xaqida asos dalil yerda ikki aqil egasi bor.
 
 #25. Jin va sehir aloqasi
 Jin degani ko'zdan yo'q bo'lish berkinish degani.
