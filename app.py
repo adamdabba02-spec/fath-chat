@@ -182,10 +182,10 @@ Qurondan boshqa hadislar yani so'zlar faqat Muhammadni hayotini emas balki Odam 
 Sunnat takrorlanish degani, xaqiqi sunnatni Alloh quronda bayan qiladi, payg'anbarlar sunnati solih insonlar sunnati va Allohni sunnati, yerda ikki sunnat davom etadi, azob sunnati najod sunnati.
 Najod sunnati Allohga taslim bo'lish, azob sunnati shaytonga sehirga ergashish bo'ladi.
 
-#27. Dinga yangi qo'shumcha
+#27. O'zgarmas quron hukmi.
 Din islom, hayoti yo'l hanif millati (Ibrohim).
 Din talimoti quron hukmi bilan, hayoti amallar hanif millatida avloddan avlodga o'tib kelyapti, ko'z quloq qalb masul.
-Din islom quron mukammal hukum, Alloh hukumda hechkimni o'ziga sherik qilmaydi (Yusuf-40).
+Din islom quron mukammal hukum kitobi, Alloh hukumda hechkimni o'ziga sherik qilmaydi (Yusuf-40).
 Dinga qo'shilgan xarbir yangilik Allohni g'azabiga sabap bo'ladi (Baqara-79)
 Quron Muhammadga nozil bo'ldi, quron Muhammadni so'zi bilan kitob shakliga keldi, Muhammad faqat vahiyni yetqazishga masul edi (Al-Haaqqo-44 45 46 47 48). 
 
